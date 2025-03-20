@@ -6,13 +6,17 @@ function aplicarColor(color) {
     formatearTexto('foreColor', color);
 }
 
+function cambiarTamanioFuente(size) {
+    formatearTexto('fontSize', size);
+}
+
 function resaltarTexto() {
     let textoBusqueda = document.getElementById("buscarTexto").value;
     let editor = document.getElementById("editor");
     let contenido = editor.innerHTML;
 
     let regex = new RegExp(textoBusqueda, "gi");
-    let nuevoContenido = contenido.replace(/<mark>|<\/mark>/gi, ""); // Eliminar marcas previas
+    let nuevoContenido = contenido.replace(/<mark>|<\/mark>/gi, "");
 
     if (textoBusqueda !== "") {
         nuevoContenido = nuevoContenido.replace(regex, match => `<mark>${match}</mark>`);
@@ -47,33 +51,21 @@ function reemplazarTexto() {
 
 function cambiarMayusculas(tipo) {
     let editor = document.getElementById("editor");
-    let texto = editor.innerText;
+    let texto = window.getSelection().toString();
 
     if (tipo === "upper") {
-        editor.innerText = texto.toUpperCase();
+        document.execCommand("insertText", false, texto.toUpperCase());
     } else if (tipo === "lower") {
-        editor.innerText = texto.toLowerCase();
+        document.execCommand("insertText", false, texto.toLowerCase());
     } else if (tipo === "capitalize") {
-        editor.innerText = texto.replace(/\b\w/g, char => char.toUpperCase());
+        document.execCommand("insertText", false, texto.replace(/\b\w/g, char => char.toUpperCase()));
     }
 }
 
-function quitarEspacios() {
-    let editor = document.getElementById("editor");
-    editor.innerText = editor.innerText.trim();
-}
-
-function revertirTexto() {
-    let editor = document.getElementById("editor");
-    editor.innerText = editor.innerText.split("").reverse().join("");
-}
-
-/* Alinear texto */
 function alinearTexto(align) {
-    document.execCommand("justify" + align);
+    formatearTexto(align);
 }
 
-/* Actualizar contador de caracteres y palabras */
 function actualizarContadores() {
     let editor = document.getElementById("editor").innerText;
     document.getElementById("contadorCaracteres").innerText = "Caracteres: " + editor.length;

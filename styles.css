@@ -28,7 +28,7 @@ h2 {
     margin-bottom: 10px;
 }
 
-button {
+button, select {
     padding: 8px 12px;
     border: none;
     cursor: pointer;
@@ -38,7 +38,7 @@ button {
     font-size: 14px;
 }
 
-button:hover {
+button:hover, select:hover {
     background: #0056b3;
 }
 

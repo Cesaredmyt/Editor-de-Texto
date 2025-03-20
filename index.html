@@ -3,12 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Editor de Texto</title>
+    <title>Editor de Texto Completo</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <div class="editor-container">
-      <h2>Editor de Texto</h2>
+      <h2>Editor de Texto Avanzado</h2>
       <div class="toolbar">
         <button onclick="formatearTexto('bold')"><b>B</b></button>
         <button onclick="formatearTexto('italic')"><i>I</i></button>
@@ -19,6 +19,14 @@
           id="selectorColor"
           onchange="aplicarColor(this.value)"
         />
+
+        <select onchange="cambiarTamanioFuente(this.value)">
+          <option value="">Tamaño</option>
+          <option value="2">Pequeño</option>
+          <option value="3">Normal</option>
+          <option value="5">Grande</option>
+          <option value="7">Muy grande</option>
+        </select>
 
         <input
           type="text"
@@ -31,19 +39,23 @@
         <button onclick="cambiarMayusculas('upper')">MAYÚSCULAS</button>
         <button onclick="cambiarMayusculas('lower')">minúsculas</button>
         <button onclick="cambiarMayusculas('capitalize')">Capitalizar</button>
+
         <button onclick="quitarEspacios()">Quitar Espacios</button>
         <button onclick="revertirTexto()">Revertir</button>
 
-        <button onclick="alinearTexto('left')">Alinear Izquierda</button>
-        <button onclick="alinearTexto('center')">Centrar</button>
-        <button onclick="alinearTexto('right')">Alinear Derecha</button>
+        <button onclick="alinearTexto('justifyLeft')">Alinear Izquierda</button>
+        <button onclick="alinearTexto('justifyCenter')">Centrar</button>
+        <button onclick="alinearTexto('justifyRight')">Alinear Derecha</button>
+        <button onclick="alinearTexto('justifyFull')">Justificar</button>
       </div>
+
       <div
         id="editor"
         contenteditable="true"
         placeholder="Escribe aquí..."
         oninput="actualizarContadores()"
       ></div>
+
       <div class="info">
         <span id="contadorCaracteres">Caracteres: 0</span> |
         <span id="contadorPalabras">Palabras: 0</span>
