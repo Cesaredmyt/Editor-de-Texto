@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Editor de Texto</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="editor-container">
+      <h2>Editor de Texto</h2>
+      <div class="toolbar">
+        <button onclick="formatearTexto('bold')"><b>B</b></button>
+        <button onclick="formatearTexto('italic')"><i>I</i></button>
+        <button onclick="formatearTexto('underline')"><u>U</u></button>
+
+        <input
+          type="color"
+          id="selectorColor"
+          onchange="aplicarColor(this.value)"
+        />
+
+        <input
+          type="text"
+          id="buscarTexto"
+          placeholder="Buscar..."
+          oninput="resaltarTexto()"
+        />
+        <button onclick="abrirModalReemplazo()">Reemplazar</button>
+
+        <button onclick="cambiarMayusculas('upper')">MAYÚSCULAS</button>
+        <button onclick="cambiarMayusculas('lower')">minúsculas</button>
+        <button onclick="cambiarMayusculas('capitalize')">Capitalizar</button>
+        <button onclick="quitarEspacios()">Quitar Espacios</button>
+        <button onclick="revertirTexto()">Revertir</button>
+
+        <button onclick="alinearTexto('left')">Alinear Izquierda</button>
+        <button onclick="alinearTexto('center')">Centrar</button>
+        <button onclick="alinearTexto('right')">Alinear Derecha</button>
+      </div>
+      <div
+        id="editor"
+        contenteditable="true"
+        placeholder="Escribe aquí..."
+        oninput="actualizarContadores()"
+      ></div>
+      <div class="info">
+        <span id="contadorCaracteres">Caracteres: 0</span> |
+        <span id="contadorPalabras">Palabras: 0</span>
+      </div>
+    </div>
+
+    <div id="modalReemplazo" class="modal">
+      <div class="modal-contenido">
+        <span class="cerrar" onclick="cerrarModal('modalReemplazo')"
+          >&times;</span
+        >
+        <h3>Reemplazar Texto</h3>
+        <input
+          type="text"
+          id="textoBuscarReemplazo"
+          placeholder="Texto a reemplazar"
+        />
+        <input type="text" id="textoNuevo" placeholder="Nuevo texto" />
+        <button onclick="reemplazarTexto()">Reemplazar</button>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
